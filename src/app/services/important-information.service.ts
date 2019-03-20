@@ -15,24 +15,25 @@ export class ImportantInformationService {
     ) {}
 
     getImportantInformation(id: number): Observable<ImportantInformation> {
-        return this.http.get(`${this.apiUrl}?id=${id}`)
-                        .pipe(
-                            map((response: any) => {
-                                const { 
-                                    short_name: shortName,
-                                    show_in_home: showInHome,
-                                    show_in_detail: showInDetail 
-                                } = response;
-                                
-                                return <ImportantInformation>{
-                                    ...response,
-                                    shortName,
-                                    showInHome,
-                                    showInDetail
-                                }
-                            }),
-                            catchError(error => Observable.throw(error))
-                        )
+        return this.http
+            .get(`${this.apiUrl}?id=${id}`)
+            .pipe(
+                map((response: any) => {
+                    const { 
+                        short_name: shortName,
+                        show_in_home: showInHome,
+                        show_in_detail: showInDetail 
+                    } = response;
+                    
+                    return {
+                        ...response,
+                        shortName,
+                        showInHome,
+                        showInDetail
+                    }
+                }),
+                catchError(error => Observable.throw(error))
+            )
     }
 
     get apiUrl(): string {

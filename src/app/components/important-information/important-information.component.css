@@ -1,0 +1,16 @@
+table {
+    border: 1px solid #000;
+    min-width: 600px;
+}
+
+table thead th {
+    text-align: left;
+}
+
+table tbody tr.loading {
+    height: 20px;
+}
+
+table tbody tr.loading td {
+    background-color: #eee;
+}

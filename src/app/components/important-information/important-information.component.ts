@@ -5,7 +5,8 @@ import { Observable } from 'rxjs';
 
 @Component({
     selector: 'app-important-information',
-    templateUrl: './important-information.component.html'
+    templateUrl: './important-information.component.html',
+    styleUrls: ['./important-information.component.css']
 })
 export class ImportantInformationComponent implements OnInit {
     importantInformation$: Observable<ImportantInformation>;
