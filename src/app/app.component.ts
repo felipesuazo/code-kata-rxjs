@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Subject, BehaviorSubject } from 'rxjs';
+import { Subject, BehaviorSubject, timer, interval } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -10,24 +11,13 @@ export class AppComponent implements OnInit {
   title = 'code-kata-rxjs';
 
   ngOnInit() {
-    const subject = new BehaviorSubject('Rankmi');
+    const source = timer(0, 5000);
 
-    const observer1 = subject.subscribe(
-      data => console.log(data),
-      error => this.handleError(error),
-      () => console.log('observer1 completed')
-    )
+    const example = source.pipe(
+      switchMap(() => interval(500))
+    );
 
-    subject.next('Hello');
-
-    const observer2 = subject.subscribe(
-      data => console.log(data),
-      error => this.handleError(error),
-      () => console.log('observer2 completed')
-    )
-
-    subject.next('World!');
-    subject.complete();
+    const subscribe = example.subscribe(value => console.log(value));
   }
 
   handleError(error) {
