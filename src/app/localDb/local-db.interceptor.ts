@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpResponse } from '@angular/common/http';
 import { of } from 'rxjs';
-import { mergeMap } from 'rxjs/operators';
+import { mergeMap, delay } from 'rxjs/operators';
 
 @Injectable()
 export class LocalDbInterceptor implements HttpInterceptor {
@@ -18,7 +18,7 @@ export class LocalDbInterceptor implements HttpInterceptor {
                         show_in_detail: true
                     };
 
-                    return of(new HttpResponse({ status: 200, body }))
+                    return of(new HttpResponse({ status: 200, body })).pipe(delay(1000))
                 })
             )
         }

@@ -7,12 +7,36 @@
         <th>show in detail</th>
     </thead>
     <tbody>
-        <tr>
+        <tr *ngIf="(importantInformation$ | async) as importantInformation else loading">
             <td>{{ importantInformation.id }}</td>
             <td>{{ importantInformation.name }}</td>
             <td>{{ importantInformation.shortName }}</td>
             <td>{{ importantInformation.showInHome }}</td>
             <td>{{ importantInformation.showInDetail }}</td>
         </tr>
+
+        <ng-template #loading>
+            <tr>
+                <td style="background-color: #eee; height: 18px; width: 20px"></td>
+                <td style="background-color: #eee; height: 18px; width: 180px"></td>
+                <td style="background-color: #eee; height: 18px; width: 90px"></td>
+                <td style="background-color: #eee; height: 18px; width: 50px"></td>
+                <td style="background-color: #eee; height: 18px; width: 50px"></td>
+            </tr>
+            <tr>
+                <td style="background-color: #eee; height: 18px; width: 20px"></td>
+                <td style="background-color: #eee; height: 18px; width: 180px"></td>
+                <td style="background-color: #eee; height: 18px; width: 90px"></td>
+                <td style="background-color: #eee; height: 18px; width: 50px"></td>
+                <td style="background-color: #eee; height: 18px; width: 50px"></td>
+            </tr>
+            <tr>
+                <td style="background-color: #eee; height: 18px; width: 20px"></td>
+                <td style="background-color: #eee; height: 18px; width: 180px"></td>
+                <td style="background-color: #eee; height: 18px; width: 90px"></td>
+                <td style="background-color: #eee; height: 18px; width: 50px"></td>
+                <td style="background-color: #eee; height: 18px; width: 50px"></td>
+            </tr>
+        </ng-template>
     </tbody>
 </table>
